@@ -1,5 +1,6 @@
 # turbocharger-template
-Template for a fully-configured Turbocharger project with Svelte, Tailwind, and Turbosql. Tracks https://github.com/trevyn/turbocharger/tree/main/example-full
+
+Template for a fully-configured Turbocharger project with Svelte, Tailwind, and Turbosql.
 
 Run full stack:
 

@@ -1,8 +1,8 @@
 [package]
 authors = ["trevyn <trevyn-git@protonmail.com>"]
-description = "Turbocharger full example template with Svelte, Tailwind, and Turbosql."
+description = "Template for a fully-configured Turbocharger project with Svelte, Tailwind, and Turbosql."
 edition = "2018"
-name = "example-full"
+name = "turbocharger-template"
 publish = false
 version = "0.1.0"
 
