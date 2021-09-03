@@ -24,7 +24,7 @@ wasm-bindgen-futures = "0.4"
 opener = "0.5"
 rust-embed = "6"
 tokio = {version = "1", features = ["full"]}
-turbosql = {git = "https://github.com/trevyn/turbosql", branch = "main"}
+turbosql = "0.3"
 warp = "0.3"
 
 [patch.crates-io]
