@@ -50,3 +50,4 @@ jobs:
       - run: npm run build
       - run: npm audit
       - run: npm run lint
+      - run: npm test-ci

@@ -7,12 +7,18 @@
   "lint": "cargo clippy -- -Dwarnings && svelte-check",
   "outdated-deps": "npm outdated && cargo update --dry-run",
   "update-deps": "npm update && cargo update",
-  "reinstall-js-deps": "rm -rf node_modules && rm -rf package-lock.json && npm install"
+  "reinstall-js-deps": "rm -rf node_modules && rm -rf package-lock.json && npm install",
+  "test": "web-test-runner \"src-frontend/**/*.test.{svelte,js,ts}\"",
+  "test-ci": "cargo run --release & sleep 2 && web-test-runner \"src-frontend/**/*.test.{svelte,js,ts}\""
  },
  "devDependencies": {
   "@emily-curry/snowpack-plugin-wasm-pack": "^1",
   "@snowpack/plugin-postcss": "^1",
   "@snowpack/plugin-svelte": "^3",
+  "@snowpack/web-test-runner-plugin": "^0.2",
+  "@testing-library/svelte": "^3",
+  "@web/test-runner": "^0.13",
+  "chai": "^4",
   "postcss": "^8",
   "snowpack": "^3",
   "svelte": "^3",
