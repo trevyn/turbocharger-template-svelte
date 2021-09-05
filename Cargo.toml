@@ -22,11 +22,14 @@ wasm-bindgen-futures = "0.4"
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 # dependencies for server only
+clap = "=3.0.0-beta.4"
+log = "0.4"
 opener = "0.5"
+pretty_env_logger = "0.4"
 rust-embed = "6"
 tokio = {version = "1", features = ["full"]}
 turbosql = "0.3"
-warp = "0.3"
+warp = {version = "0.3", features = ["tls"]}
 
 [patch.crates-io]
 js-sys = {git = "https://github.com/rustwasm/wasm-bindgen"}

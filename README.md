@@ -5,23 +5,16 @@ Template for a fully-configured Turbocharger project with Svelte, Tailwind, and 
 Run full stack:
 
 ```
-npm start
+npm run start-debug
 ```
 
-Run full stack in watch mode, will reload on save of any frontend or backend file:
+Run Svelte frontend only in Hot Module Replacement dev mode (you'll need to manually run the server with `npm run start-debug` in a separate terminal, and re-run it if you change any Rust code):
 
 ```
-cargo install cargo-watch
-npm run watch
+npm run frontend-dev
 ```
 
-Run Svelte frontend only in Hot Module Replacement dev mode (you'll need to manually run the server with `npm start` in a separate terminal, and re-run it if you change any Rust code):
-
-```
-npm run hmr
-```
-
-make release build:
+Make release build:
 
 ```
 npm run build
