@@ -50,3 +50,49 @@ jobs:
       - run: npm run build
       - run: npm audit
       - run: npm run test-ci
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.os }}-${{ matrix.rust }}
+          path: target/release/turbocharger-template
+
+  release:
+    needs: [checklinks, build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v2
+
+      - id: vars
+        run: echo "::set-output name=sha::$(echo $(date '+%y%m%d-%H%M')-${GITHUB_SHA:0:7})"
+
+      - id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.vars.outputs.sha }}
+          release_name: ${{ steps.vars.outputs.sha }}
+          draft: false
+          prerelease: false
+
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./ubuntu-latest-stable/turbocharger-template
+          asset_name: turbocharger-template-linux
+          asset_content_type: application/octet-stream
+
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./macos-11.0-stable/turbocharger-template
+          asset_name: turbocharger-template-macos
+          asset_content_type: application/octet-stream
