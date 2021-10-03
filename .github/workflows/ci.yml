@@ -57,7 +57,7 @@ jobs:
   release:
     needs: [checklinks, build]
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     steps:
       - uses: actions/checkout@v2
         with:
