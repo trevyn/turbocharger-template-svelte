@@ -1,8 +1,8 @@
 mod backend;
 
-use clap::Clap;
+use clap::Parser;
 
-#[derive(Clap)]
+#[derive(clap::Parser)]
 struct Opts {
  #[clap(short, long)]
  cert_path: Option<String>,
