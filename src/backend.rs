@@ -1,5 +1,5 @@
 use turbocharger::backend;
-use turbosql::{select, Turbosql};
+use turbosql::Turbosql;
 use wasm_bindgen::prelude::*;
 
 #[backend]
@@ -16,5 +16,5 @@ async fn insert_person(p: Person) -> Result<i64, turbosql::Error> {
 
 #[backend]
 async fn get_person(rowid: i64) -> Result<Person, turbosql::Error> {
- select!(Person "WHERE rowid = ?", rowid)
+ turbosql::select!(Person "WHERE rowid = ?", rowid)
 }
