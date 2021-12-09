@@ -1,11 +1,9 @@
 use turbocharger::backend;
+use turbosql::{select, Turbosql};
 use wasm_bindgen::prelude::*;
 
-#[cfg(not(target_arch = "wasm32"))]
-use turbosql::{select, Turbosql};
-
 #[backend]
-#[cfg_attr(not(target_arch = "wasm32"), derive(Turbosql))]
+#[derive(Turbosql)]
 pub struct Person {
  pub rowid: Option<i64>,
  pub name: Option<String>,
