@@ -8,7 +8,7 @@ struct Opts {
  cert_path: Option<String>,
  #[clap(short, long)]
  key_path: Option<String>,
- #[clap(short, long, default_value = "8000")]
+ #[clap(short, long, default_value = "8080")]
  port: u16,
 }
 
