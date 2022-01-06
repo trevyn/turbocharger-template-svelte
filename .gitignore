@@ -4,3 +4,4 @@ src-frontend/turbocharger_generated
 target
 Cargo.lock
 **/package-lock.json
+.DS_Store
