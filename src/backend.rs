@@ -3,7 +3,7 @@ use turbosql::Turbosql;
 use wasm_bindgen::prelude::*;
 
 #[backend]
-#[derive(Turbosql)]
+#[derive(Turbosql, Default)]
 pub struct Person {
  pub rowid: Option<i64>,
  pub name: Option<String>,
