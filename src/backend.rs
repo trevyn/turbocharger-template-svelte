@@ -1,5 +1,5 @@
 use turbocharger::backend;
-use turbosql::{select, Turbosql};
+use turbosql::Turbosql;
 
 #[backend]
 #[derive(Turbosql, Default)]
@@ -15,7 +15,7 @@ async fn insert_person(p: Person) -> Result<i64, turbosql::Error> {
 
 #[backend]
 async fn get_person(rowid: i64) -> Result<Person, turbosql::Error> {
- select!(Person "WHERE rowid = ?", rowid)
+ turbosql::select!(Person "WHERE rowid = ?", rowid)
 }
 
 // N.B. Streams are not yet supported, but this is what the interface might look like:
