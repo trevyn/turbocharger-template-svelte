@@ -4,7 +4,7 @@ description = "Template for a fully-configured Turbocharger project with Svelte,
 edition = "2021"
 name = "turbocharger-template"
 publish = false
-version = "0.1.0"
+version = "0.2.0"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
@@ -17,7 +17,7 @@ path = "src/server.rs"
 
 [dependencies]
 # dependencies for both server and wasm
-turbocharger = "0.1"
+turbocharger = "0.2"
 turbosql = "0.4"
 wasm-bindgen = "0.2"
 wasm-bindgen-futures = "0.4"
@@ -27,10 +27,7 @@ wasm-bindgen-futures = "0.4"
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 # dependencies for server only
-# async-stream = "0.3"
 clap = {version = "3", features = ["derive"]}
-# futures-core = "0.3"
-# futures-util = "0.3"
 log = "0.4"
 opener = "0.5"
 pretty_env_logger = "0.4"

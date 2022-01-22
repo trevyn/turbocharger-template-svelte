@@ -9,9 +9,13 @@
   let rowid = await backend.insert_person(person);
   console.log("Inserted rowid ", rowid);
  })();
+
+ let stream_example_store = backend.stream_example();
 </script>
 
 Hello!<br />
+
+stream_example_store -> {$stream_example_store}
 
 {#await backend.get_person(1n) then person}
  Name: {person.name}
