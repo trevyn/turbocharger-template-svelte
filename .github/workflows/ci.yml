@@ -24,9 +24,12 @@ jobs:
       - name: Fail if there were link-check errors
         run: exit ${{ steps.lychee.outputs.exit_code }}
 
-  build:
-    name: build ${{ matrix.os }} rust ${{ matrix.rust }}
+  test:
+    name: test ${{ matrix.os }} rust ${{ matrix.rust }}
     runs-on: ${{ matrix.os }}
+
+    env:
+      RUSTFLAGS: '--cfg turbocharger_test'
 
     strategy:
       fail-fast: false
@@ -49,13 +52,35 @@ jobs:
       - run: npx audit-ci --low -a 1006896
       - run: npm run test-ci
 
+  build:
+    name: build ${{ matrix.os }} rust ${{ matrix.rust }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-11.0]
+        rust: [stable]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: hecrj/setup-rust-action@v1
+        with:
+          rust-version: ${{ matrix.rust }}
+          targets: wasm32-unknown-unknown
+
+      - run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+      - run: npm run build
+
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.os }}-${{ matrix.rust }}
           path: target/release/${{ github.event.repository.name }}
 
   release:
-    needs: [checklinks, build]
+    needs: [checklinks, test, build]
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     steps:
