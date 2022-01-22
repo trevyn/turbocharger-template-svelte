@@ -4,7 +4,7 @@ description = "Template for a fully-configured Turbocharger project with Svelte,
 edition = "2021"
 name = "turbocharger-template"
 publish = false
-version = "0.2.0"
+version = "0.1.0"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
