@@ -17,7 +17,7 @@ path = "src/server.rs"
 
 [dependencies]
 # dependencies for both server and wasm
-turbocharger = "0.2"
+turbocharger = {git = "https://github.com/trevyn/turbocharger", branch = "axum"}
 turbosql = "0.4"
 wasm-bindgen = "0.2"
 wasm-bindgen-futures = "0.4"
