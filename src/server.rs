@@ -30,20 +30,21 @@ async fn main() {
  log::debug!("debug enabled");
  log::trace!("trace enabled");
 
+ let addr = std::net::SocketAddr::from(([0, 0, 0, 0], opts.port));
+
  match (opts.key_path, opts.cert_path) {
   (Some(key_path), Some(cert_path)) => {
    eprintln!("Serving HTTPS on port {}", opts.port);
-   // warp::serve(turbocharger::warp_routes(Frontend))
-   //  .tls()
-   //  .cert_path(cert_path)
-   //  .key_path(key_path)
-   //  .run(([0, 0, 0, 0], opts.port))
-   //  .await;
+   turbocharger::axum_server::serve_tls::<Frontend>(
+    &addr,
+    std::path::Path::new(&key_path),
+    std::path::Path::new(&cert_path),
+   )
+   .await;
   }
   (None, None) => {
    eprintln!("Serving (unsecured) HTTP on port {}", opts.port);
    opener::open(format!("http://127.0.0.1:{}", opts.port)).ok();
-   let addr = std::net::SocketAddr::from(([0, 0, 0, 0], opts.port));
    turbocharger::axum_server::serve::<Frontend>(&addr).await;
   }
   _ => eprintln!("Both key-path and cert-path must be specified for HTTPS."),
