@@ -35,7 +35,7 @@ async fn main() {
  match (opts.key_path, opts.cert_path) {
   (Some(key_path), Some(cert_path)) => {
    eprintln!("Serving HTTPS on port {}", opts.port);
-   turbocharger::axum_server::serve_tls::<Frontend>(
+   turbocharger::serve_tls::<Frontend>(
     &addr,
     std::path::Path::new(&key_path),
     std::path::Path::new(&cert_path),
@@ -45,7 +45,7 @@ async fn main() {
   (None, None) => {
    eprintln!("Serving (unsecured) HTTP on port {}", opts.port);
    opener::open(format!("http://127.0.0.1:{}", opts.port)).ok();
-   turbocharger::axum_server::serve::<Frontend>(&addr).await;
+   turbocharger::serve::<Frontend>(&addr).await;
   }
   _ => eprintln!("Both key-path and cert-path must be specified for HTTPS."),
  }
