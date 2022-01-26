@@ -37,8 +37,8 @@ async fn main() {
    eprintln!("Serving HTTPS on port {}", opts.port);
    turbocharger::serve_tls::<Frontend>(
     &addr,
-    std::path::Path::new(&key_path),
-    std::path::Path::new(&cert_path),
+    &std::fs::read_to_string(key_path).unwrap(),
+    &std::fs::read_to_string(cert_path).unwrap(),
    )
    .await;
   }
