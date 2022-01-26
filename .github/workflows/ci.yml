@@ -72,7 +72,7 @@ jobs:
       - run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
       - run: npm run build
-      - run: npx audit-ci --low -a 1006899
+      - run: npx audit-ci --low
 
       - uses: actions/upload-artifact@v2
         with:
