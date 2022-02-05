@@ -33,14 +33,9 @@ async fn main() {
  let addr = std::net::SocketAddr::from(([0, 0, 0, 0], opts.port));
 
  match (opts.key_path, opts.cert_path) {
-  (Some(key_path), Some(cert_path)) => {
+  (Some(_key_path), Some(_cert_path)) => {
    eprintln!("Serving HTTPS on port {}", opts.port);
-   turbocharger::serve_tls::<Frontend>(
-    &addr,
-    &std::fs::read_to_string(key_path).unwrap(),
-    &std::fs::read_to_string(cert_path).unwrap(),
-   )
-   .await;
+   turbocharger::serve_tls::<Frontend>(&addr).await;
   }
   (None, None) => {
    eprintln!("Serving (unsecured) HTTP on port {}", opts.port);
