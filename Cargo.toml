@@ -1,6 +1,4 @@
 [package]
-authors = ["trevyn <trevyn-git@protonmail.com>"]
-description = "Template for a fully-configured Turbocharger project with Svelte, Tailwind, and Turbosql."
 edition = "2021"
 name = "turbocharger-template"
 publish = false
@@ -17,7 +15,7 @@ path = "src/server.rs"
 
 [dependencies]
 # dependencies for both server and wasm
-turbocharger = {git = "https://github.com/trevyn/turbocharger", branch = "axum", features = ["full"]}
+turbocharger = {version = "0.3", git = "https://github.com/trevyn/turbocharger", branch = "axum", features = ["full"]}
 turbosql = "0.5"
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
@@ -34,6 +32,3 @@ pretty_env_logger = "0.4"
 rust-embed = "6"
 tokio = {version = "1", features = ["macros", "rt-multi-thread"]}
 tracked = "0.1"
-
-[patch.crates-io]
-turbosql = {git = "https://github.com/trevyn/turbosql", branch = "main"}
