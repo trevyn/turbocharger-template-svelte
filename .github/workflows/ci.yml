@@ -28,13 +28,10 @@ jobs:
     name: test ${{ matrix.os }} rust ${{ matrix.rust }}
     runs-on: ${{ matrix.os }}
 
-    env:
-      RUSTFLAGS: '--cfg turbocharger_test'
-
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-11.0]
+        os: [ubuntu-latest, macos-latest]
         rust: [stable, beta, nightly]
 
     steps:
@@ -58,7 +55,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-11.0]
+        os: [ubuntu-latest, macos-latest]
         rust: [stable]
 
     steps:
@@ -117,6 +114,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./macos-11.0-stable/${{ github.event.repository.name }}
+          asset_path: ./macos-latest-stable/${{ github.event.repository.name }}
           asset_name: ${{ github.event.repository.name }}-macos
           asset_content_type: application/octet-stream
