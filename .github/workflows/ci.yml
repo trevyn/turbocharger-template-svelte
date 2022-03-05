@@ -12,7 +12,7 @@ jobs:
   checklinks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: trevyn/lychee-action@v1
         id: lychee
@@ -35,7 +35,7 @@ jobs:
         rust: [stable, beta, nightly]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: hecrj/setup-rust-action@v1
         with:
@@ -59,7 +59,7 @@ jobs:
         rust: [stable]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: hecrj/setup-rust-action@v1
         with:
@@ -71,7 +71,7 @@ jobs:
       - run: npm run build
       - run: npx audit-ci --low
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.os }}-${{ matrix.rust }}
           path: target/release/${{ github.event.repository.name }}
@@ -81,11 +81,11 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
 
       - id: vars
         run: echo "::set-output name=sha::$(echo $(date '+%y%m%d-%H%M')-${GITHUB_SHA:0:7})"
