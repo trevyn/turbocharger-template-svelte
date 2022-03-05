@@ -20,16 +20,6 @@ async fn get_person(rowid: i64) -> Result<Person, turbosql::Error> {
 
 // N.B. Streams are experimental!
 
-// #[backend]
-// async fn stream_example() -> yields!(u32) {
-//  let mut i = 0;
-//  loop {
-//   yield i;
-//   i += 1;
-//   tokio::time::sleep(tokio::time::Duration::from_secs(2)).await;
-//  }
-// }
-
 #[backend]
 fn stream_example() -> impl Stream<Item = String> {
  turbocharger::async_stream::stream! {
