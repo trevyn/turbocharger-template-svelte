@@ -15,6 +15,7 @@ path = "src/server.rs"
 
 [dependencies]
 # dependencies for both server and wasm
+tracked = "0.3"
 turbocharger = {version = "0.3", features = ["full"]}
 turbosql = "0.5"
 
@@ -31,4 +32,3 @@ opener = "0.5"
 pretty_env_logger = "0.4"
 rust-embed = "6"
 tokio = {version = "1", features = ["macros", "rt-multi-thread"]}
-tracked = "0.1"
