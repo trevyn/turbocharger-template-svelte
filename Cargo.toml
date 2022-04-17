@@ -15,7 +15,7 @@ path = "src/server.rs"
 
 [dependencies]
 # dependencies for both server and wasm
-tracked = "0.3"
+tracked = "0.4"
 turbocharger = {version = "0.3", features = ["full"]}
 turbosql = "0.5"
 
