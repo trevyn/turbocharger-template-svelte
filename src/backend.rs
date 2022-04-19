@@ -2,28 +2,28 @@ use tracked::tracked;
 use turbocharger::backend;
 use turbosql::Turbosql;
 
-#[backend]
+#[backend(js)]
 #[derive(Turbosql, Default)]
 pub struct Person {
  pub rowid: Option<i64>,
  pub name: Option<String>,
 }
 
-#[backend]
+#[backend(js)]
 #[tracked]
 async fn insert_person(p: Person) -> Result<i64, tracked::StringError> {
  Ok(p.insert()?) // returns rowid
 }
 
 #[tracked]
-#[backend]
+#[backend(js)]
 async fn get_person(rowid: i64) -> Result<Person, tracked::StringError> {
  Ok(turbosql::select!(Person "WHERE rowid = ?", rowid)?)
 }
 
 // N.B. Streams are experimental!
 
-#[backend]
+#[backend(js)]
 fn stream_example() -> impl Stream<Item = String> {
  turbocharger::async_stream::stream! {
   let mut i = 0;
@@ -35,7 +35,7 @@ fn stream_example() -> impl Stream<Item = String> {
  }
 }
 
-#[backend]
+#[backend(js)]
 #[tracked]
 fn stream_example_result() -> impl Stream<Item = Result<String, tracked::StringError>> {
  turbocharger::async_stream::try_stream!({
