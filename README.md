@@ -2,6 +2,16 @@
 
 Template for a fully-configured Turbocharger project with Svelte, Tailwind, and Turbosql.
 
+Prerequisites:
+
+```
+rustup target add wasm32-unknown-unknown
+```
+
+```
+cargo install wasm-pack
+```
+
 Run full stack:
 
 ```
