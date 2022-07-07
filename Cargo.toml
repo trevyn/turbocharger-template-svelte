@@ -1,6 +1,6 @@
 [package]
 edition = "2021"
-name = "turbocharger-template"
+name = "turbocharger-template-svelte"
 publish = false
 version = "0.1.0"
 
@@ -10,7 +10,7 @@ name = "turbocharger_generated"
 path = "src/wasm.rs"
 
 [[bin]]
-name = "turbocharger-template"
+name = "turbocharger-template-svelte"
 path = "src/server.rs"
 
 [dependencies]
