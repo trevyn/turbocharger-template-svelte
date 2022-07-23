@@ -16,7 +16,7 @@ path = "src/server.rs"
 [dependencies]
 # dependencies for both server and wasm
 tracked = "0.5"
-turbocharger = {version = "0.3", features = ["full"]}
+turbocharger = {version = "0.4", features = ["full"]}
 turbosql = "0.7"
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
